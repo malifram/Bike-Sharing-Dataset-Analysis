@@ -1,6 +1,9 @@
 # Bike-Sharing-Dataset
 ##### MUHAMAD ALIF RAMADHAN | @malifram | Dicoding Indonesia - IDCamp 2024 
 
+## Summary
+This project is a data analysis and visualization project focused on the "Bike Sharing Dataset." It includes code for data processing, exploratory data analysis (EDA), and a Streamlit dashboard for interactive data exploration. The goal of this project is to analyze the "Bike Sharing Dataset."
+
 ## Features
 
 - Total Users of Bicycle Rental
