@@ -19,8 +19,8 @@
 ## Setup
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/malifram/Analisa-Data-dengan-Python/blob/main/submission/.git
+    ```shell
+    git clone https://github.com/malifram/Bike-Sharing-Dataset-Analysis
     ```
 
 2. Navigate to the project directory:
