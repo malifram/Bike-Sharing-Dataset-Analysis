@@ -56,6 +56,12 @@ def create_monthly_user_trends_df(day_df):
 def create_daily_users_df (day_df):
     daily_users_df = day_df.groupby("a_week")["count_cr"].sum().reset_index()
     daily_users_df.rename(columns={"count_cr": "Total Users"}, inplace = True)
+    max_day = daily_users_df.loc[daily_users_df["Total Users"].idxmax(), "a_week"]
+    daily_users_df['highlight'] = daily_users_df['a_week'].apply(
+        lambda x: 'Special Day' if x == max_day else 'Regular Day'
+    )
+    day_order = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    daily_users_df['a_week'] = pd.Categorical(daily_users_df['a_week'], categories=day_order, ordered=True)
     return daily_users_df
 
 @st.cache_data
@@ -199,13 +205,20 @@ daily_order = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
 plt.figure(figsize=(10, 6))
 plt.gcf().patch.set_facecolor('none')
 
+# Create a colour palette for hue
+palette = {
+    'Regular Day': '#000080',  
+    'Special Day': '#ff0000',  
+}
+
 # Create a bar plot for daily users
 sns.barplot(
     x='a_week', 
     y='Total Users', 
     data=daily_users_df,
-    palette=["#0000bc", "#0000bc", "#0000bc", "#0000bc", "#0000bc", "#000080", "#0000bc"],
-    order=daily_order
+    hue='highlight',
+    dodge=False,
+    palette=palette
 )
 # Set the title and labels
 plt.title('Daily Users', fontsize=16, fontweight='bold')
