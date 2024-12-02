@@ -41,7 +41,7 @@ def create_total_casual_df (day_df):
 # Cache for Question Answering
 @st.cache_data
 def create_monthly_user_trends_df(day_df):
-    monthly_user_trends_df = day_df.resample(rule='M', on='dteday').agg({
+    monthly_user_trends_df = day_df.resample(rule='ME', on='dteday').agg({
     "month": "max",
     "count_cr": "sum"
     })
